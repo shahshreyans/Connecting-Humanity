@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Home</title>
+</head>
+<body>
+<a href="#">Home</a>
+<a href="{% url 'ngopages:povertycare' %}">Poverty Care</a>
+<a href="{% url 'ngopages:hungerrelief'%}">Hunger Relief</a>
+<a href="{% url 'ngopages:healthcare'%}">Health Care</a>
+<a href="{% url 'ngopages:educationalaids'%}">Educational Aids</a>
+<br><br><br>
+Your Recent Activites:
+<table cellpadding="1.5px" padding="1.5px" border="2px">
+    <thead>
+    <th>NGO</th>
+    <th>Title</th>
+    <th>Details</th>
+    <th>Event Date</th>
+    <th>Event Time</th>
+    <th>Event Location</th>
+    <th>Location Url</th>
+    <th>Note For Donner</th>
+    <th>Note for Needy</th>
+    <th>Posted Date</th>
+    <th>Posted Time</th>
+    <th>Status</th>
+    </thead>
+    <tbody>
+    {%for activity in activities%}
+    <tr>
+        <td>{{activity.ngo.ngo_name}}</td>
+        <td>{{activity.title}}</td>
+        <td>{{activity.detail}}</td>
+        <td>{{activity.date}}</td>
+        <td>{{activity.time}}</td>
+        <td>{{activity.location}}</td>
+        <td>{{activity.location_map_url}}</td>
+        <td>{{activity.note_for_donner}}</td>
+        <td>{{activity.note_for_needy}}</td>
+        <td>{{activity.posted_date}}</td>
+        <td>{{activity.posted_time}}</td>
+        <td>{% if activity.complete == False %}Pending
+            {% else %} Completed
+            {% endif %}
+        </td>
+    </tr>
+    </tbody>
+</table>
+    {% empty %}
+    <h5>No Activities</h5>
+    {% endfor%}
+
+</body>
+</html>

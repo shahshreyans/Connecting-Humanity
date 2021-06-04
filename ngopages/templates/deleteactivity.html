@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Delete</title>
+</head>
+<body>
+<a href="{% url 'ngopages:index' %}">GO BACK</a>
+<form method="post">
+{% csrf_token %}
+<h3>Are You Sure You want to delete this {{activities}} activity?</h3>
+<input type="submit" value="Delete">
+</form>
+</body>
+</html>

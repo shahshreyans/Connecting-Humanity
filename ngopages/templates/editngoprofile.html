@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Ngo Profile</title>
+</head>
+<body>
+
+<img src="{{request.user.ngo_logo.url}}" height="100px" width="100px" >
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit">
+</body>
+</html>

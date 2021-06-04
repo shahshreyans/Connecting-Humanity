@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+<h3>{{request.user}}</h3>
+<a href="{% url 'ngopages:logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'ngopages:login' %}">Login</a>
+{% endif %}
+<br><br>
+<a href="#">Home</a>
+<a href="{% url 'ngopages:addactivity' %}">Add Activies</a>
+<a href="{% url 'ngopages:editngoprofile' slug=request.user.slug %}">Edit Profile</a>
+<br><br><br>
+Your Recent Activites:
+<table cellpadding="1.5px" padding="1.5px" border="2px">
+    <thead>
+    <th>NGO</th>
+    <th>Title</th>
+    <th>Details</th>
+    <th>Event Date</th>
+    <th>Event Time</th>
+    <th>Event Location</th>
+    <th>Location Url</th>
+    <th>Note For Donner</th>
+    <th>Note for Needy</th>
+    <th>Posted Date</th>
+    <th>Posted Time</th>
+    <th>Status</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+    {%for activity in activities%}
+    <tr>
+        <td>{{activity.ngo.ngo_name}}</td>
+        <td>{{activity.title}}</td>
+        <td>{{activity.detail}}</td>
+        <td>{{activity.date}}</td>
+        <td>{{activity.time}}</td>
+        <td>{{activity.location}}</td>
+        <td>{{activity.location_map_url}}</td>
+        <td>{{activity.note_for_donner}}</td>
+        <td>{{activity.note_for_needy}}</td>
+        <td>{{activity.posted_date}}</td>
+        <td>{{activity.posted_time}}</td>
+        <td>{% if activity.complete == False %}Pending
+            {% else %} Completed
+            {% endif %}
+        </td>
+        <td><a href="{% url 'ngopages:editactivity' slug=activity.slug %}"> Edit </a> </td>
+        <td><a href="{% url 'ngopages:deleteactivity' slug=activity.slug %}"> Delete</a></td>
+    </tr>
+    {% empty %}
+    <h5>No Activities</h5>
+    {% endfor%}
+    </tbody>
+</table>
+</body>
+</html>
