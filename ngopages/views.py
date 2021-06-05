@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
-from .forms import RegisterNgoForm, NgoActivityForm, EditNgoProfileForm
+from .forms import *
 from .models import NgoActivityModel, RegisterNgoModel
 
 
@@ -64,7 +64,7 @@ class DeleteActivityview(LoginRequiredMixin, DeleteView):
 
 class Loginview(LoginView):
     template_name = 'login.html'
-    fields = '__all__'
+    authentication_form = UserLoginForm
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -105,6 +105,10 @@ class Povertycareview(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ngos'] = context['ngos'].filter(category='No Poverty')
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['ngos'] = context['ngos'].filter(ngo_name__startswith = search_input)
+        context['search_input'] = search_input
         return context
 
 
