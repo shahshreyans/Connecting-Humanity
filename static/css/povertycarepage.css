@@ -1,0 +1,26 @@
+ #secondbody{
+        background-color:#939393;
+      }
+    .card{
+        border: 2px solid #333333;
+        background-color: #E2E7EA;
+      }
+    .card .card-body{
+        border: 2px solid #333333;
+        background-color:#5F5656;
+    }
+    .card .card-body .card-text{
+        color:#D7CFCF;
+    }
+    .card .card-body .card-title a{
+        color:#D7CFCF;
+    }
+    .card .card-body .card-title a:hover{
+        color:black;
+        border-bottom:3px solid black;
+    }
+      .card:hover{
+        box-shadow: 15px 14px 35px -3px rgba(0,0,0,0.63);
+-webkit-box-shadow: 15px 14px 35px -3px rgba(0,0,0,0.63);
+-moz-box-shadow: 15px 14px 35px -3px rgba(0,0,0,0.63);
+      }

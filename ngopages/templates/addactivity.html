@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Activty</title>
-</head>
-<body>
+{% extends 'ngobase.html' %}
+{% load static%}
+{% block content%}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
 <input type="submit">
 </form>
-</body>
-</html>
+{%endblock content%}

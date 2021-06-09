@@ -9,7 +9,7 @@ from django.utils.text import slugify
 
 class RegisterNgoModel(AbstractUser):
     contactno_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                     message="Format:'+999999999'. Up to 15 digits allowed.")
+                                     message="Contact No. Format:'+999999999'. Up to 15 digits allowed.")
 
     category_choice = [('No Poverty', 'No Poverty'), ('No Hunger', 'No Hunger'), ('Good Health', 'Good Health'),
                        ('Quality Education', 'Quality Education')]
@@ -23,13 +23,13 @@ class RegisterNgoModel(AbstractUser):
     contact_number = models.CharField(validators=[contactno_regex], max_length=17)
     website = models.URLField(blank=True)
     category = models.CharField(max_length=20, choices=category_choice, default='No Poverty')
-    mission = models.CharField(max_length=500)
+    mission = models.TextField(max_length=1000)
     paypal_account = models.EmailField(blank=True)
     bank_name = models.CharField(max_length=100)
     bank_account_number = models.IntegerField(null=True)
     bank_ifsc_code = models.CharField(max_length=15)
     register_date = models.DateTimeField(auto_now_add=True)
-    ngo_logo = models.ImageField(null=True, blank=True)
+    ngo_logo = models.ImageField(null=True,upload_to="images/")
 
     def __str__(self):
         return self.ngo_name

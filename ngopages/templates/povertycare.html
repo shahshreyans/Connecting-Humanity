@@ -1,10 +1,39 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Poverty care</title>
-</head>
-<body>
+{% extends 'userbase.html' %}
+{% load static%}
+{% block mycss %}
+<link rel="stylesheet" href="{% static '/css/povertycarepage.css' %}">
+{% endblock mycss %}
+{% block content%}
+<br><br><br>
+<div class="d-block m-5" id="secondbody">
+ <br><br>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+  {% for ngo in ngos %}
+  {#  Single Card Template:#}
+  <div class="card" style="width: 18rem; margin: 10px">
+    <img src="{{ngo.ngo_logo.url}}" class="card-img-top" >
+    <div class="card-body">
+      <div style="display: flex; flex-direction: row">
+          <h5 class="card-title text-capitalize"><a class="text-decoration-none stretched-link" href="{% url 'ngopages:ngodetail' slug=ngo.slug %}">{{ ngo.ngo_name }}</a></h5>
+      </div>
+      <p class="card-text ">{{ ngo.mission }}</p>
+      <p class="card-text  fw-bold">{{ngo.contact_number}}</p>
+      <p class="card-text fw-bold">{{ngo.website}}</p>
+        <!--
+      <a href="/command/{{ card.id }}/color" class="btn btn-primary">Change Color</a>
+      <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a>-->
+    </div>
+  </div>
+
+    {% empty %}
+    <h1>Sorry! No NGO Found</h1><br><br>
+    {% endfor %}
+
+</div>
+</div>
+<br><br>
+<!--
 <form method="GET" >
     <input type="text" name="search-area" value="{{search_input}}">
     <input type="submit" value="search">
@@ -28,6 +57,5 @@
     {% empty %}
     <h3>No NGO Registered in this category</h3>
     {% endfor %}
-</table>
-</body>
-</html>
+</table> -->
+{% endblock content%}

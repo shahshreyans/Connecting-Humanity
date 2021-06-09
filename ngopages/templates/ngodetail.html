@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>NGO Detail</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static%}
+{% block content%}
 <h4>{{ngo.ngo_name}}</h4>
 <P>Address: {{ngo.address}}</P>
 <p>City: {{ngo.city}}</p>
@@ -19,5 +15,4 @@
 <p>Bank IFSC Code:{{ngo.bank_ifsc_code}} </p>
 <p>Registered Date:{{ngo.register_date}}</p>
 
-</body>
-</html>
+{% endblock content%}

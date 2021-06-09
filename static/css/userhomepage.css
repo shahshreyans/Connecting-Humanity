@@ -1,0 +1,25 @@
+  #mainheading{
+        margin-right:15%;
+        margin-left:15%;
+        color: #333333;
+      }
+   #secondbody{
+        background-color: #939393;
+      }
+ #cardid{
+        margin-top:20px;
+        margin-bottom:20px;
+        margin-right:15%;
+        margin-left:15%;
+        color: #333333;
+      }
+      .card{
+        border: 1px solid #333333;
+        background-color: #E2E7EA;
+      }
+      .card:hover{
+        box-shadow: 15px 14px 35px -3px rgba(0,0,0,0.63);
+-webkit-box-shadow: 15px 14px 35px -3px rgba(0,0,0,0.63);
+-moz-box-shadow: 15px 14px 35px -3px rgba(0,0,0,0.63);
+      }
+

@@ -1,21 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-{% if request.user.is_authenticated %}
-<h3>{{request.user}}</h3>
-<a href="{% url 'ngopages:logout' %}">Logout</a>
-{% else %}
-<a href="{% url 'ngopages:login' %}">Login</a>
-{% endif %}
-<br><br>
+{% extends 'ngobase.html' %}
+{% load static%}
+{% block mycss%}
+<link rel="stylesheet" href="{% static '/css/userhomepage.css' %}">
+{% endblock mycss%}
+{% block content%}
+<!--
 <a href="#">Home</a>
 <a href="{% url 'ngopages:addactivity' %}">Add Activies</a>
 <a href="{% url 'ngopages:editngoprofile' slug=request.user.slug %}">Edit Profile</a>
 <br><br><br>
+-->
+<br><br><br>
+ <div class="jumbotron" id="mainheading">
+      <h1>Your Posted Campaigns</h1>
+  </div>
+
+<div class="d-block m-5" id="secondbody">
+<div class="d-block" id="cardid">
+    <br><br>
+  {%for activity in activities%}
+ <div class="card">
+  <div class="card-header bg-secondary text-dark">
+      <h5>{{activity.title}}<span class="badge bg-dark">{% if activity.complete == False %}Awaiting
+            {% else %} Completed
+            {% endif %}</span> </h5>
+      <h5>Posted By-{{activity.ngo.ngo_name}}</h5>
+  </div>
+  <div class="card-body">
+    <h6 class="card-text">Description:{{activity.detail}}</h6>
+    <h6 class="card-text">Notes For Donner:{{activity.note_for_donner}}</h6>
+    <h6 class="card-text">Notes For Neddy:{{activity.note_for_needy}}</h6>
+    <h6 class="card-text">Required Document List:{{activity.document_list}}</h6>
+      <h6 class="card-text">Event Date:{{activity.date}} </h6>
+      <h6 class="card-text"> Event Time:{{activity.time}} </h6>
+      <h6 class="card-text"> Event Location:{{activity.location}}</h6>
+      <h6 class="card-text">Map Url:<a>{{activity.location_map_url}}</a></h6>
+      <h6 class="card-text">Posted Date & Time:{{activity.posted_date}}|{{activity.posted_time}}</h6>
+      <a href="{% url 'ngopages:editactivity' slug=activity.slug %}" class="btn btn-primary">Edit</a> <a href="{%url 'ngopages:deleteactivity' slug=activity.slug%}"style="margin-left:15px" class="btn btn-danger">Delete</a>
+
+    </div>
+  </div>
+  <br><br>
+    {% empty %}
+    <h1>Sorry! You haven't posted any Campaign</h1>
+    <br><br>
+    {% endfor%}
+</div>
+</div>
+<!--
 Your Recent Activites:
 <table cellpadding="1.5px" padding="1.5px" border="2px">
     <thead>
@@ -60,5 +92,5 @@ Your Recent Activites:
     {% endfor%}
     </tbody>
 </table>
-</body>
-</html>
+-->
+{%endblock content%}

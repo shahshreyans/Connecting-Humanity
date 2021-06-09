@@ -1,0 +1,104 @@
+{% load static%}
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1 , maximum-scale=1">
+    <!-- Bootstrap css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Google Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Connecting Humanity</title>
+    <style>
+      .carousel-item img{
+        height: auto;
+        max-height: 600px;
+      }
+      .navbar {
+        background-color:#2F2A2A ;
+      }
+      .nav-link{
+        color:#C0BEBE;
+      }
+
+     .navbar .container-fluid .navbar-brand{
+        color:#C0BEBE;
+      }
+      .nav-item:hover{
+        border-bottom: 2px solid #C0BEBE;
+      }
+
+      .d-flex h6:hover{
+        color: white;
+      }
+    body{
+           background-color:#E2E7EA;
+        }
+    </style>
+    {% block mycss %}
+    {% endblock mycss%}
+
+</head>
+<body>
+   <!--Image carausol -->
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-interval="1000">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/ngo1.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" >
+      <img src="{% static 'images/ngo2.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" >
+      <img src="{% static 'images/ngo3.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+     <div class="carousel-item" >
+      <img src="{% static 'images/ngo4.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" >
+      <img src="{% static 'images/user1.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+  <!--Navbar start -->
+<nav class="navbar sticky-top py-4 navbar-expand-lg navbar-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Connecting Humanity</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+     <div class="collapse navbar-collapse"></div>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
+        <li class="nav justify-content-center  nav-item ">
+          <a class="nav-link " aria-current="page" href="{% url 'ngopages:index' %}">Home</a>
+        </li>
+        <li class="nav justify-content-center  nav-item">
+          <a class="nav-link" href="{% url 'ngopages:addactivity' %}">Post Campaign</a>
+        </li>
+        <li class=" nav justify-content-center  nav-item">
+          <a class="nav-link" href="{% url 'ngopages:editngoprofile' slug=request.user.slug %}">Edit Profile</a>
+        </li>
+        <li class=" nav justify-content-center  nav-item">
+            <a class="nav-link" href="{% url 'ngopages:userindex'%}">User Page</a>
+        </li>
+        <li class=" nav justify-content-center  nav-item">
+            <a class="nav-link" href="{% url 'ngopages:logout' %}">Logout</a>
+        </li>
+      </ul>
+       <div class="d-flex justify-content-center">
+          <h6 class="nav-link  ">Welcome {{request.user}}</h6>
+       </div>
+
+
+    </div>
+  </div>
+</nav>
+{%block content%}
+{%endblock content%}
+<!-- Bootstrap Javascript-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</body>
+</html>

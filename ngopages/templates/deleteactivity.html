@@ -1,15 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Confirm Delete</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static%}
+{% block mycss %}
+<style>
+    .card{
+        margin-top:20%;
+        margin-left:20%;
+        margin-right:20%;
+        margin-bottom:10%;
+        border:1px solid black;
+        background-color:#f5bcab;
+    }
+</style>
+{% endblock mycss%}
+{% block content%}
+
+<div class="card">
+  <h5 class="card-header bg-danger text-light fw-bold">Are You Sure you want to delete {{activities}} campaign?</h5>
+  <div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Delete">
+         <a href="{% url 'ngopages:index' %}" class="btn btn-primary" style="margin-left:15px;">Back</a>
+    </form>
+
+  </div>
+</div>
+<!--
 <a href="{% url 'ngopages:index' %}">GO BACK</a>
 <form method="post">
 {% csrf_token %}
 <h3>Are You Sure You want to delete this {{activities}} activity?</h3>
 <input type="submit" value="Delete">
 </form>
-</body>
-</html>
+
+-->
+{% endblock content%}

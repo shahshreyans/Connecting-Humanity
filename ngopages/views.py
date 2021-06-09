@@ -96,6 +96,14 @@ class UserIndexview(ListView):
     context_object_name = 'activities'
     template_name = 'userhome.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['activities'] = context['activities'].filter(title__startswith=search_input)
+        context['search_input'] = search_input
+        return context
+
 
 class Povertycareview(ListView):
     model = RegisterNgoModel
@@ -107,7 +115,7 @@ class Povertycareview(ListView):
         context['ngos'] = context['ngos'].filter(category='No Poverty')
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
-            context['ngos'] = context['ngos'].filter(ngo_name__startswith = search_input)
+            context['ngos'] = context['ngos'].filter(ngo_name__startswith=search_input)
         context['search_input'] = search_input
         return context
 
@@ -120,6 +128,10 @@ class Hungerreliefview(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ngos'] = context['ngos'].filter(category='No Hunger')
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['ngos'] = context['ngos'].filter(ngo_name__startswith=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -131,6 +143,10 @@ class Healthcareview(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ngos'] = context['ngos'].filter(category='Good Health')
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['ngos'] = context['ngos'].filter(ngo_name__startswith=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -142,6 +158,10 @@ class Educationalaidsview(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ngos'] = context['ngos'].filter(category='Quality Education')
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['ngos'] = context['ngos'].filter(ngo_name__startswith=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -149,4 +169,3 @@ class Ngodetailview(DetailView):
     model = RegisterNgoModel
     context_object_name = 'ngo'
     template_name = 'ngodetail.html'
-

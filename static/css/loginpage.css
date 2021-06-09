@@ -81,13 +81,27 @@ box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.6);
 -moz-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.6);
 }
 .form-control{
-  background-color: C4C4C4
+  background-color: #C4C4C4;
+  border: 0;
+  display: block;
+  text-align: center;
+  border: 2px solid #3498db;
+  width: 250px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s
 }
 .form-control:focus{
     background-color: #787777;
     color:	#DCDCDC ;
-    border-color: #0000;
+    width: 300px;
+    border-color: black;
     box-shadow: -2px -1px 10px 1px rgba(0,0,0,0.39);
 -webkit-box-shadow: -2px -1px 10px 1px rgba(0,0,0,0.39);
 -moz-box-shadow: -2px -1px 10px 1px rgba(0,0,0,0.39);
+}
+.form-control input:-webkit-autofill {
+  -webkit-box-shadow:200px 200px 100px #787777 inset;
+  box-shadow:200px 200px 100px #787777 inset;
 }
