@@ -1,9 +1,53 @@
 {% extends 'ngobase.html' %}
 {% load static%}
+{% block mycss%}
+<style>
+    #imageid{
+    height:100px;
+    width:100px;
+    border: 1px solid black;
+    margin-left: 40%;
+    }
+</style>
+<link rel="stylesheet" href="{% static '/css/registerpage.css' %}">
+{% endblock mycss%}
 {% block content%}
-<img src="{{request.user.ngo_logo.url}}" height="100px" width="100px" >
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-<input type="submit">
+
+<br><br>
+<div class="page-content">
+
+<div class="form-v7-content">
+
+			<form class="form-detail"  method="post" id="myform" enctype="multipart/form-data">
+                <div class="form-row">
+                    <img id="imageid" src="{{request.user.ngo_logo.url}}"  >
+                </div>
+                {% csrf_token %}
+                {% for field in form%}
+				<div class="form-row">
+                    {{field.label}}:
+                    {{field}}
+				</div>
+                {% endfor %}
+				{% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+                {% endif %}
+                <div class="form-row-last">
+					<input type="submit"  class="register" value="Save Changes" >
+                </div>
+            </form>
+        </div>
+    </div>
+
 {%endblock content%}

@@ -4,16 +4,16 @@ from django.contrib.auth.views import LoginView
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
+from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from .forms import *
 from .models import NgoActivityModel, RegisterNgoModel
 
-
 # Create your views here.
-
+'''
 class Mainpageview(TemplateView):
     template_name = 'mainpage.html'
+'''
 
 
 # Ngo views starts here
@@ -103,7 +103,10 @@ class UserIndexview(ListView):
             context['activities'] = context['activities'].filter(title__startswith=search_input)
         context['search_input'] = search_input
         return context
-
+class Listngoview(ListView):
+    model = RegisterNgoModel
+    context_object_name = 'ngos'
+    template_name = 'listngo.html'
 
 class Povertycareview(ListView):
     model = RegisterNgoModel

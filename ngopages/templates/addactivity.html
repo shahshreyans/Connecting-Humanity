@@ -1,9 +1,43 @@
 {% extends 'ngobase.html' %}
 {% load static%}
+{% block mycss %}
+<link rel="stylesheet" href="{% static '/css/addactivitypage.css' %}">
+{% endblock mycss%}
 {% block content%}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-<input type="submit">
-</form>
+<br><br>
+<div class="jumbotron" id="mainheading">
+      <h1>Post Campaign</h1>
+  </div>
+<br><br>
+<div class="page-content">
+<div class="form-v7-content">
+			<form class="form-detail"  method="post" id="myform" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form%}
+				<div class="form-row">
+                    {{field.label}}:
+                    {{field}}
+				</div>
+                {% endfor %}
+				{% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+                {% endif %}
+                <div class="form-row-last">
+					<input type="submit"  class="register" value="Post" >
+                </div>
+            </form>
+        </div>
+    </div>
+
 {%endblock content%}

@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
 {% load static%}
+{% block mycss%}
+<style>
+ .container{
+background-color:#939393;
+margin-top: 5%;
+margin-bottom:5%;
+margin-left: auto;
+marginh-right:auto;
+}
+ #imageid{
+    height:100px;
+    width:100px;
+    border: 1px solid black;
+    }
+</style>
+{% endblock mycss%}
 {% block content%}
-<h4>{{ngo.ngo_name}}</h4>
+<div class="container">
+<div class="fw-bold">
+    <h2>{{ngo.ngo_name}}<img id="imageid"src="{{ngo.ngo_logo.url}}"></h2>
 <P>Address: {{ngo.address}}</P>
 <p>City: {{ngo.city}}</p>
 <p>State: {{ngo.state}}</p>
@@ -14,5 +32,6 @@
 <p>Bank Account Number: {{ngo.bank_account_number}}</p>
 <p>Bank IFSC Code:{{ngo.bank_ifsc_code}} </p>
 <p>Registered Date:{{ngo.register_date}}</p>
-
+</div>
+</div>
 {% endblock content%}

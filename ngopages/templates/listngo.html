@@ -1,0 +1,58 @@
+{% extends 'userbase.html' %}
+{% load static%}
+{% block mycss%}
+<style>
+     #mainheading{
+        margin-right:15%;
+        margin-left:15%;
+        color: #333333;
+      }
+    #secondbody{
+        background-color: #939393;
+      }
+    .table a{
+    color:black;
+    }
+    .table a:hover{
+    color:blue;
+    }
+    .table td{
+    font-weight:bold;
+    }
+    .table th{
+    font-weight:bold;
+    }
+</style>
+{% endblock mycss%}
+{% block content%}
+<br><br><br>
+<div class="jumbotron" id="mainheading">
+      <h1>List of All NGO</h1>
+  </div>
+
+<div class="d-block m-5" id="secondbody">
+    <table class="table table-hover table-bordered border-dark ">
+     <thead>
+     <tr>
+         <th class="fs-5 text-center" scope="col">Name</th>
+         <th class="fs-5 text-center" scope="col">Mission</th>
+         <th class="fs-5 text-center" scope="col">Category</th>
+         <th class="fs-5 text-center" scope="col">Contact Number</th>
+     </tr>
+     </thead>
+     <tbody>
+     {% for ngo in ngos%}
+
+        <tr>
+        {% if ngo.ngo_name != "admin" %}
+        <td ><a href="{% url 'ngopages:ngodetail' slug=ngo.slug %}" class="text-decoration-none">{{ngo.ngo_name}}</a></td>
+        <td>{{ngo.mission}}</td>
+        <td>{{ngo.category}}</td>
+        <td>{{ngo.contact_number}}</td>
+        </tr>
+        {%endif%}
+     {% endfor %}
+     </tbody>
+    </table>
+</div>
+{% endblock content%}

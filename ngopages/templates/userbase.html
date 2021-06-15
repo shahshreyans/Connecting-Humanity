@@ -15,8 +15,13 @@
            background-color:#E2E7EA;
         }
     .carousel-item img{
-        height: auto;
-        max-height: 600px;
+         height: 65vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
       }
       .navbar {
         background-color:#2F2A2A ;
@@ -87,7 +92,7 @@
           <a class="nav-link " aria-current="page" href="{% url 'ngopages:userindex'%}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ngo List</a>
+          <a class="nav-link" href="{% url 'ngopages:listngo'%}">Ngo List</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'ngopages:povertycare' %}">Poverty Care</a>
